@@ -1,82 +1,85 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Table :columns="tableColumns" :data="tableData" />
-    <Select :value="value">
-      <Option value="London">London</Option>
-      <Option value="Sydney">Sydney</Option>
-    </Select>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div class="iview-container">
+      <div class="iview-container__aside">
+        <Select v-model="compType" @on-change="$store.commit('reset')">
+          <Option v-for="item in compOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </Select>
+      </div>
+      <div class="iview-container__main">
+        <dynamic-component :type="compType" />
+      </div>
+    </div>
+    <div>
+      <Button v-show="rwDispatcherState === 'write'" type="primary" size="small" @click="toggleState">详情</Button>
+      <Button v-show="rwDispatcherState === 'read'" type="primary" size="small" @click="toggleState">编辑</Button>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-const cityList = [
-  {
-    value: 'New York',
-    label: 'New York'
-  },
-  {
-    value: 'London',
-    label: 'London'
-  },
-  {
-    value: 'Sydney',
-    label: 'Sydney'
-  },
-  {
-    value: 'Ottawa',
-    label: 'Ottawa'
-  },
-  {
-    value: 'Paris',
-    label: 'Paris'
-  },
-  {
-    value: 'Canberra',
-    label: 'Canberra'
-  }
-]
+import DynamicComponent from '../components/dynamic-component'
+import { ComponentMap } from '../maps'
 
 export default {
-  name: 'home',
   components: {
-    HelloWorld
+    DynamicComponent
+  },
+  provide () {
+    return {
+      rwDispatcherProvider: this
+    }
   },
   data () {
     return {
-      value: 'London',
-      tableColumns: [
-        {
-          title: 'Name',
-          key: 'name'
-        },
-        {
-          title: 'City',
-          render: (h, params) => (
-            <iSelect
-              transfer
-              v-model={ this.value }
-            >
-              {
-                cityList.map(item => (
-                  <iOption key={ item.value } value={ item.value }>{ item.label }</iOption>
-                ))
-              }
-            </iSelect>
-          )
-        }
-      ],
-      tableData: [
-        {
-          name: 'Lee',
-          city: 'London'
-        }
-      ]
+      rwDispatcherState: 'write',
+      compType: '',
+      compOptions: []
+    }
+  },
+  created () {
+    for (let [value, label] of Object.entries(ComponentMap)) {
+      this.compOptions.push({ label, value })
+    }
+  },
+  methods: {
+    toggleState () {
+      if (this.rwDispatcherState === 'write') {
+        this.rwDispatcherState = 'read'
+      } else {
+        this.rwDispatcherState = 'write'
+      }
     }
   }
 }
 </script>
+
+<style lang="less">
+  .iview-container {
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    &__main {
+      display: flex;
+      flex: 1;
+      padding: 0 20px;
+    }
+    &__aside {
+      width: 300px;
+      .el-button +.el-button {
+        margin-left: 0;
+      }
+    }
+    +div {
+      padding: 0 20px;
+      text-align: left;
+    }
+    .ivu-slider {
+      width: 100%;
+    }
+  }
+</style>
