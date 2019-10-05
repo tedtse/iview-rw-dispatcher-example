@@ -48,41 +48,42 @@
       <FormItem label="活动形式">
         <InputDispatcher v-model="form.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..." />
       </FormItem>
-      <div style="text-align: right">
-        <Button v-show="rwDispatcherState === 'write'" type="primary" @click="toggleState">编辑</Button>
-        <Button v-show="rwDispatcherState === 'read'" type="primary" style="margin-left: 8px" @click="toggleState">详情</Button>
-      </div>
     </Form>
   </div>
 </template>
 
-<script lang="ts">
-import { Component } from 'vue-property-decorator';
-import { RWDispatcher } from 'iview-rw-dispatcher';
-
-@Component
-export default class IViewDemo extends RWDispatcher {
-  private form = {
-    name: '618电器折扣日',
-    region: 'London',
-    level: 5,
-    duration: 7,
-    date1: '2019-06-18',
-    date2: new Date(2019, 6, 18, 0, 0, 0),
-    delivery: false,
-    type: ['单纯品牌曝光'],
-    resource: '线下场地免费',
-    desc: '凡在实体店购买指定商品，立刻过得赠品一份',
-  };
-  public toggleState() {
-    if (this.getRWDispatcherState() === 'write') {
-      this.setRWDispatcherState('read');
-    } else {
-      this.setRWDispatcherState('write');
+<script>
+export default {
+  provide () {
+    return {
+      myNsProvider: this
     }
-  }
-  public tipFormat(val: number) {
-    return val + '天';
+  },
+  data () {
+    return {
+      form: {
+        name: '618电器折扣日',
+        region: 'London',
+        level: 5,
+        duration: 7,
+        date1: '2019-06-18',
+        date2: new Date(2019, 6, 18, 0, 0, 0),
+        delivery: false,
+        type: ['单纯品牌曝光'],
+        resource: '线下场地免费',
+        desc: '凡在实体店购买指定商品，立刻过得赠品一份'
+      }
+    }
+  },
+  computed: {
+    myNsState () {
+      return this.$route.meta.state
+    }
+  },
+  methods: {
+    tipFormat (val) {
+      return val + '天'
+    }
   }
 }
 </script>

@@ -48,10 +48,6 @@
       <FormItem label="活动形式">
         <InputDispatcher v-model="form.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..." />
       </FormItem>
-      <div style="text-align: right">
-        <Button v-show="rwDispatcherState === 'write'" type="primary" @click="toggleState">编辑</Button>
-        <Button v-show="rwDispatcherState === 'read'" type="primary" style="margin-left: 8px" @click="toggleState">详情</Button>
-      </div>
     </Form>
   </div>
 </template>
@@ -65,13 +61,13 @@ export default {
   },
   data () {
     return {
-      rwDispatcherState: 'write',
       form: {
         name: '618电器折扣日',
         region: 'London',
         level: 5,
         duration: 7,
-        date1: '2019-06-18',
+        // date1: '2019-06-18',
+        date1: new Date(2019, 6, 18, 0, 0, 0),
         date2: new Date(2019, 6, 18, 0, 0, 0),
         delivery: false,
         type: ['单纯品牌曝光'],
@@ -80,14 +76,12 @@ export default {
       }
     }
   },
+  computed: {
+    rwDispatcherState () {
+      return this.$route.meta.state
+    }
+  },
   methods: {
-    toggleState () {
-      if (this.rwDispatcherState === 'write') {
-        this.rwDispatcherState = 'read'
-      } else {
-        this.rwDispatcherState = 'write'
-      }
-    },
     tipFormat (val) {
       return val + '天'
     }

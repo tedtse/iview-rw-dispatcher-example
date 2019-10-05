@@ -4780,14 +4780,14 @@ isstream@~0.1.2:
   resolved "http://npm.xiepeng.cc/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
-iview-rw-dispatcher@^0.0.0-alpha.3:
-  version "0.0.0-alpha.3"
-  resolved "http://npm.xiepeng.cc/iview-rw-dispatcher/-/iview-rw-dispatcher-0.0.0-alpha.3.tgz#c2468f2d86e39d5bede919382562ed58cdf97a78"
-  integrity sha512-Zs4LLbR2KwpetPT8h2yS9V8E3GeOiqF4+Fx5rpjvxpkTH7d7je/3MOupPqtXnseMQcn0ngc8nQLydijpDYkUhQ==
+iview-rw-dispatcher@^0.1.0-beta.2:
+  version "0.1.0-beta.2"
+  resolved "https://registry.npm.taobao.org/iview-rw-dispatcher/download/iview-rw-dispatcher-0.1.0-beta.2.tgz?cache=0&sync_timestamp=1570256318968&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fiview-rw-dispatcher%2Fdownload%2Fiview-rw-dispatcher-0.1.0-beta.2.tgz#005bb14c609dfb460bf434aa813e73798d656e3b"
+  integrity sha1-AFuxTGCd+0YL9DSqgT5zeY1lbjs=
   dependencies:
     change-case "^3.1.0"
     lodash "^4.17.15"
-    rw-dispatcher-helper "^0.0.0-alpha"
+    rw-dispatcher-helper "^0.1.0-beta"
 
 iview@^3.5.1:
   version "3.5.1"
@@ -7158,10 +7158,10 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rw-dispatcher-helper@^0.0.0-alpha:
-  version "0.0.0-alpha"
-  resolved "http://npm.xiepeng.cc/rw-dispatcher-helper/-/rw-dispatcher-helper-0.0.0-alpha.tgz#82afcd6c1c4b56f93ab5a1e99587c4033e09d0f5"
-  integrity sha512-a+ewl3gTNdOKZlpFtVqnqZcz/T73DuKEJkKKNLLiTOiKJaGWWDCBJ8d3PmGDWbfvOKRzqMPWjSnv48EU7+EBLw==
+rw-dispatcher-helper@^0.1.0-beta:
+  version "0.1.0-beta"
+  resolved "https://registry.npm.taobao.org/rw-dispatcher-helper/download/rw-dispatcher-helper-0.1.0-beta.tgz#52f7fbdcd5f513a93d60c5a79650dcb7e1c0004c"
+  integrity sha1-Uvf73NX1E6k9YMWnllDct+HAAEw=
   dependencies:
     "@types/lodash" "^4.14.137"
     "@types/uuid" "^3.4.5"
